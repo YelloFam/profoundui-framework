@@ -91,3 +91,12 @@ Atrium["runPCCommand"] = function(command) {
   par["Atrium"]["api"]["runPCCommand"](command);
   
 }
+
+Atrium["refreshNavPanel"] = function() {
+  
+  var par = parent.parent || parent;
+  if (!par || !par["Atrium"]) return;
+  
+  par["Atrium"]["api"]["refreshNavPanel"]();
+  
+}
