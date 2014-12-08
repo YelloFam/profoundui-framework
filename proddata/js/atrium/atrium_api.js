@@ -100,3 +100,12 @@ Atrium["refreshNavPanel"] = function() {
   par["Atrium"]["api"]["refreshNavPanel"]();
   
 }
+
+Atrium["setMenuFilter"] = function(value) {
+
+  var par = parent.parent || parent;
+  if (!par || !par["Atrium"]) return;
+  
+  par["Atrium"]["api"]["setMenuFilter"](value);
+
+}
