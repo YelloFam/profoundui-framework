@@ -109,3 +109,17 @@ Atrium["setMenuFilter"] = function(value) {
   par["Atrium"]["api"]["setMenuFilter"](value);
 
 }
+
+Atrium["breakMessagesShow"] = function(messages, userId){
+  var par = parent.parent || parent;
+  if (!par || !par["Atrium"]) return;
+  
+  par["Atrium"]["api"]["breakMessagesShow"](messages, userId);
+};
+
+Atrium["breakMessagesOnStorage"] = function(e){
+  var par = parent.parent || parent;
+  if (!par || !par["Atrium"]) return;
+  
+  par["Atrium"]["api"]["breakMessagesOnStorage"](e);
+};
