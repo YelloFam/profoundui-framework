@@ -28,7 +28,7 @@ Atrium["launchURL"] = function(url, title, closable) {
 }
 
 Atrium["closeTab"] = function(tab) {
-  
+
   var par = parent.parent || parent;
   if (!par || !par["Atrium"]) return;
 
