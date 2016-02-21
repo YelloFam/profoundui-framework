@@ -22,104 +22,124 @@ if (!window["Atrium"]) window["Atrium"] = new Object();
 
 Atrium["launchURL"] = function(url, title, closable) {
 
-  if (!parent["Atrium"]) return;
-  return parent["Atrium"]["api"]["launchURL"](url, title, closable); 
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
+
+  return awin["Atrium"]["api"]["launchURL"](url, title, closable); 
   
 }
 
 Atrium["closeTab"] = function(tab) {
 
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
 
-  par["Atrium"]["api"]["closeTab"](window, tab);
+  awin["Atrium"]["api"]["closeTab"](window, tab);
 
   
 }
 
 Atrium["launchItem"] = function(itemId, closable, callback) {
 
-  if (!parent["Atrium"]) return;  
-  return parent["Atrium"]["api"]["launchItem"](itemId, closable, callback);
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
+
+  return awin["Atrium"]["api"]["launchItem"](itemId, closable, callback);
   
 }
 
 Atrium["activateTab"] = function(tab) {
 
-  if (!parent["Atrium"]) return;
-  parent["Atrium"]["api"]["activateTab"](tab);
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
+
+  awin["Atrium"]["api"]["activateTab"](tab);
   
 }
 
 Atrium["closeAllTabs"] = function(keepHomePage) {
   
-  if (!parent["Atrium"]) return;  
-  parent["Atrium"]["api"]["closeAllTabs"](window, keepHomePage);
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
+
+  awin["Atrium"]["api"]["closeAllTabs"](window, keepHomePage);
   
 }
 
 Atrium["getCurrentTab"] = function() {
   
-  if (!parent["Atrium"]) return;
-  return parent["Atrium"]["api"]["getCurrentTab"](window);
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
+
+  return awin["Atrium"]["api"]["getCurrentTab"](window);
   
 }
 
 Atrium["getToken"] = function() {
 
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;  
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  return par["Atrium"]["api"]["getToken"]();
+  return awin["Atrium"]["api"]["getToken"]();
 
 }
 
 Atrium["getUser"] = function() {
 
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;  
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  return par["Atrium"]["api"]["getUser"]();  
+  return awin["Atrium"]["api"]["getUser"]();  
 
 }
 
 Atrium["runPCCommand"] = function(command) {
   
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  par["Atrium"]["api"]["runPCCommand"](command);
+  awin["Atrium"]["api"]["runPCCommand"](command);
   
 }
 
 Atrium["refreshNavPanel"] = function() {
   
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  par["Atrium"]["api"]["refreshNavPanel"]();
+  awin["Atrium"]["api"]["refreshNavPanel"]();
   
 }
 
 Atrium["setMenuFilter"] = function(value) {
 
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  par["Atrium"]["api"]["setMenuFilter"](value);
+  awin["Atrium"]["api"]["setMenuFilter"](value);
 
 }
 
 Atrium["breakMessagesShow"] = function(messages, userId){
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  par["Atrium"]["api"]["breakMessagesShow"](messages, userId);
+  awin["Atrium"]["api"]["breakMessagesShow"](messages, userId);
 };
 
 Atrium["breakMessagesOnStorage"] = function(e){
-  var par = parent.parent || parent;
-  if (!par || !par["Atrium"]) return;
+  var awin = Atrium["getAtriumWindow"]();
+  if (awin == null) return;
   
-  par["Atrium"]["api"]["breakMessagesOnStorage"](e);
+  awin["Atrium"]["api"]["breakMessagesOnStorage"](e);
 };
+
+
+Atrium["getAtriumWindow"] = function() {
+  var par = window.parent;
+  while (par != null && par != par.parent && (par["Atrium"] == null || par["Atrium"]["api"] == null)) {
+    par = par.parent;
+  }
+  if (par == null || par["Atrium"] == null || par["Atrium"]["api"] == null) return null;
+  return par;
+}
