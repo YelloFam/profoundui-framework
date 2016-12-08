@@ -143,3 +143,13 @@ Atrium["getAtriumWindow"] = function() {
   if (par == null || par["Atrium"] == null || par["Atrium"]["api"] == null) return null;
   return par;
 }
+
+
+Atrium["collapseNav"] = function() {
+	var awin = Atrium["getAtriumWindow"]();
+	awin["Atrium"]["api"]["collapseNav"]();
+}
+Atrium["expandNav"] = function() {
+	var awin = Atrium["getAtriumWindow"]();
+	awin["Atrium"]["api"]["expandNav"]();
+}
